@@ -59,23 +59,45 @@ bool MyString::MyStrStr(const char* str)
 
 int MyString::MyChr(char c)
 {
-	return 0;
+	for (int i = 0; str[i] != '\0'; i++)
+	{
+		if (str[i] == c)
+		{
+			return i;
+		}
+		return -1;
+	}
 }
 
 int MyString::MyStrLen()
 {
-	return 0;
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return i;
 }
 
 void MyString::MyStrCat(MyString& b)
 {
+	int NewLength = length + b.length;
+	char* NewStr = new char[NewLength + 1];
+
+	strcpy_s(NewStr, length + 1, str);
+	strcat_s(NewStr, NewLength + 1, b.str);
+
+	str = NewStr;
+	length = NewLength;
 }
 
 void MyString::MyDelChr(char c)
 {
+
 }
 
 int MyString::MyStrCmp(MyString& b)
 {
-	return 0;
+	return strcmp(str, b.str);
 }

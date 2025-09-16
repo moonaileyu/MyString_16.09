@@ -16,7 +16,7 @@ public:
 
 	void MyStrcpy(MyString& obj1);
 	bool MyStrStr(const char* str);
-	int  MyChr(char c);
+	int MyChr(char c);
 	int MyStrLen();
 	void MyStrCat(MyString& b);
 	void MyDelChr(char c);
