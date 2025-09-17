@@ -94,7 +94,33 @@ void MyString::MyStrCat(MyString& b)
 
 void MyString::MyDelChr(char c)
 {
+	int count = 0;
+	for (int i = 0; i < length; i++)
+	{
+		if (str[i] == c)
+		{
+			count++;
+		}
+	}
 
+	int NewSize = length - count;
+
+	char* newstr = new char[NewSize + 1];
+
+	int j = 0;
+
+	for (int i = 0; i < length + 1; i++)
+	{
+		if (str[i] != c)
+		{
+			newstr[j] = str[i];
+			j++;
+		}
+	}
+
+	delete[] str;
+	str = newstr;
+	length = NewSize;
 }
 
 int MyString::MyStrCmp(MyString& b)
