@@ -4,6 +4,7 @@ class MyString
 private:
 	char* str;
 	int length;
+	static int count;
 
 public:
 	MyString();
@@ -21,4 +22,5 @@ public:
 	void MyStrCat(MyString& b);
 	void MyDelChr(char c);
 	int MyStrCmp(MyString& b);
+	static int GetCount();
 };

@@ -6,12 +6,14 @@ MyString::MyString()
 {
 	length = 80;
 	str = new char[length] {};
+	count++;
 }
 
 MyString::MyString(int size)
 {
 	length = size;
 	str = new char[length] {};
+	count++;
 }
 
 MyString::MyString(const char* st)
@@ -19,6 +21,7 @@ MyString::MyString(const char* st)
 	length = strlen(st);
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, st);
+	count++;
 }
 
 MyString::MyString(const MyString& obj1)
@@ -26,12 +29,14 @@ MyString::MyString(const MyString& obj1)
 	length = obj1.length;
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, obj1.str);
+	count++;
 }
 
 MyString::~MyString()
 {
 	delete[] str;
 	length = 0;
+	count--;
 }
 
 void MyString::Print()
@@ -41,6 +46,7 @@ void MyString::Print()
 
 void MyString::MyStrcpy(MyString& obj1)
 {
+	delete[] str;
 	length = obj1.length;
 	str = new char[length + 1];
 	strcpy_s(str, length + 1, obj1.str);
@@ -48,7 +54,7 @@ void MyString::MyStrcpy(MyString& obj1)
 
 bool MyString::MyStrStr(const char* str)
 {
-	const char* s = strstr(this->str, str); 
+	const char* s = strstr(this->str, str);
 
 	if (s != nullptr)
 	{
@@ -65,8 +71,8 @@ int MyString::MyChr(char c)
 		{
 			return i;
 		}
-		return -1;
 	}
+	return -1;
 }
 
 int MyString::MyStrLen()
@@ -88,6 +94,7 @@ void MyString::MyStrCat(MyString& b)
 	strcpy_s(NewStr, length + 1, str);
 	strcat_s(NewStr, NewLength + 1, b.str);
 
+	delete[] str;
 	str = NewStr;
 	length = NewLength;
 }
@@ -127,3 +134,10 @@ int MyString::MyStrCmp(MyString& b)
 {
 	return strcmp(str, b.str);
 }
+
+int MyString::GetCount()
+{
+	return count;
+}
+
+int MyString::count = 0;
